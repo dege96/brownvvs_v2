@@ -1,7 +1,7 @@
 :root {
     --color-primary-dark: #425b48;
     --color-primary: #678170;
-    --color-primary-50: #97bea5e6;;
+    --color-button: #97bea5e6;;
     --color-secondary: #8ea89b;
     --color-light: #b7d2c8;
     --color-white: #f1fee8;
@@ -14,6 +14,13 @@
     --p1: calc(var(--text-base) * 1.2);
     --p2: var(--text-base);
     --p3: calc(var(--text-base) * 0.85);
+
+    /* Gradient färger */
+    --gradient-1: linear-gradient(45deg, var(--color-primary-dark), var(--color-primary));
+    --gradient-2: linear-gradient(135deg, var(--color-primary), var(--color-primary-50));
+    --gradient-3: linear-gradient(90deg, var(--color-secondary), var(--color-light));
+    --gradient-4: linear-gradient(180deg, var(--color-primary-dark), var(--color-secondary));
+    --gradient-5: linear-gradient(180deg, var(--color-white), var(--color-secondary));
 }
 
 body {
@@ -21,6 +28,7 @@ body {
     margin: 0;
     color: var(--color-text);
     background-color: var(--color-light);
+
 }
 
 header {
@@ -86,9 +94,13 @@ header nav a:hover {
     margin: 0 auto;
 }
 
+.alla-sektioner {
+    background-color: #f1fee8;
+}
+
 .contact-btn {
     display: inline-block;
-    background-color: var(--color-primary-50);
+    background-color: var(--color-button);
     color: var(--color-white);
     padding: 1rem 2rem;
     text-decoration: none;
@@ -101,8 +113,8 @@ header nav a:hover {
 }
 
 .services {
-    padding: 8rem 2rem;
-    background-color: var(--color-white);
+    padding: 4rem 3rem;
+    scroll-margin-top: 1000px;
 }
 
 .service-grid {
@@ -116,16 +128,19 @@ header nav a:hover {
 .service-item {
     background-color: var(--color-light);
     padding: 3rem;
-    padding-left: 4.5rem;
+    padding-left: 5.5rem;
     border-radius: 4px;
     transition: transform 0.3s ease;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .service-item::before {
     content: '✓';
     position: absolute;
-    left: 1.5rem;
+    left: 2.5rem;
     color: var(--color-primary-dark);
     font-size: 1.2rem;
     font-weight: bold;
@@ -136,7 +151,6 @@ header nav a:hover {
 }
 
 .contact-form {
-    background-color: var(--color-secondary);
     padding: 8rem 2rem;
 }
 
@@ -235,6 +249,12 @@ footer a:hover {
     :root {
         --scale: 1.4;
     }
+    .services, .about-section {
+        scroll-margin-top: 140px;
+    }
+    html {
+        scroll-padding-top: 200px;
+    }
 } 
 
 .logo {
@@ -294,4 +314,42 @@ p {
     font-size: var(--p3);
     line-height: 1.6;
     margin-bottom: 0.8rem;
+} 
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 2rem;
+}
+
+/* Responsiv design för mobil */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+    }
+    
+    .about-text {
+        order: 2;
+    }
+    
+    .about-image {
+        order: 1;
+        margin-bottom: 1.5rem;
+    }
 } 

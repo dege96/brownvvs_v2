@@ -32,4 +32,7 @@ echo "Remote origin tillagd"
 git push -u origin main
 echo "Kod pushad till GitHub"
 
-echo "Klart! Din kod är nu på GitHub" 
+echo "Klart! Din kod är nu på GitHub"
+echo "Tryck på Enter för att avsluta..."
+read
+  
