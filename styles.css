@@ -962,7 +962,7 @@ li {
 
     .mobile-header-item {
         flex: 1;
-        padding: 15px 15px 12px;  /* Minska padding-bottom */
+        padding: 15px 15px 12px;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -970,14 +970,22 @@ li {
         color: var(--text-dark);
         display: flex;
         flex-direction: column;
-        gap: 2px;  /* Minska avståndet mellan texterna */
+        gap: 2px;
         justify-content: center;
-        min-height: 65px;  /* Säkerställ konsekvent höjd */
+        min-height: 65px;
+        position: relative;
+    }
+
+    .mobile-header-item:first-child:not(.active) {
+        border-bottom-right-radius: 20px;
+    }
+
+    .mobile-header-item:last-child:not(.active) {
+        border-bottom-left-radius: 20px;
     }
 
     .mobile-header-item.active {
         background-color: var(--bg-dark-blue);
-
     }
 
     .mobile-header-item .title {
@@ -1021,6 +1029,15 @@ li {
     /* Justera även innehållet */
     .mobile-content h2 {
         margin-bottom: calc(20px + 1.5vw);
+    }
+
+    .mobile-content h2::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--bg-white-transparent);
+        margin-top: 15px;
     }
 
     .mobile-content p {
