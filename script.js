@@ -1,8 +1,13 @@
+
 // Väntar på att DOM ska laddas helt innan skriptet körs
 document.addEventListener('DOMContentLoaded', function() {
     // Hanterar header scroll-effekt
     const header = document.querySelector('header');
     const scrollThreshold = 50;
+
+    // Loggar fönstrets dimensioner
+    console.log('Fönsterhöjd:', window.innerHeight, 'px');
+    console.log('Fönsterbredd:', window.innerWidth, 'px');
 
     // Funktion som hanterar header scroll
     function handleScroll() {
@@ -15,7 +20,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Lyssnar efter scroll-event med passive flag för bättre prestanda
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', () => {
+        console.log('Scrollposition:', window.scrollY, 'px');
+        handleScroll();
+        
+        // Beräkna width och parallax för hero baserat på scroll position
+        const hero = document.querySelector('.hero');
+        const scrollY = window.scrollY;
+        const maxScroll = 616;
+        const minWidth = 100;
+        const maxWidth = 100.1;
+        
+        if (scrollY <= maxScroll) {
+            // Beräkna width med linjär interpolation
+            const widthDiff = maxWidth - minWidth;
+            const scrollProgress = scrollY / maxScroll;
+            const currentWidth = minWidth + (widthDiff * scrollProgress);
+            
+            // Applicera width med smooth transition
+            hero.style.transition = 'width 0.1s ease-out';
+            hero.style.width = `${currentWidth}%`;
+
+            // Lägg till parallax effekt på bakgrunden
+            const parallaxValue = scrollY * 0.2;
+            hero.style.backgroundPosition = `center ${parallaxValue}px`;
+        }
+    }, { passive: true });
 
     // Sätter upp Intersection Observer för att animera sektioner när de blir synliga
     const sections = document.querySelectorAll('section');
@@ -120,53 +150,119 @@ if (circles.length > 0) {
 
                         // Vänta en kort stund för att säkerställa att SVG:n har renderats
                         setTimeout(() => {
+                            // Starta pulsering för dot1 innan första hover
+                            const dot1 = document.getElementById('dot1');
+                            let hasBeenHovered = false;
+                            
+                            if (dot1) {
+                                dot1.style.transition = 'fill 1s ease-in-out';
+                                const pulseAnimation = () => {
+                                    if (!hasBeenHovered) {
+                                        dot1.style.fill = 'rgb(141, 198, 163)';
+                                        setTimeout(() => {
+                                            if (!hasBeenHovered) {
+                                                dot1.style.fill = '#f1f2f2';
+                                                setTimeout(pulseAnimation, 1000);
+                                            }
+                                        }, 1000);
+                                    }
+                                };
+                                pulseAnimation();
+                            }
+
                             Object.keys(tooltips).forEach(dotId => {
                                 const dot = document.getElementById(dotId);
+                                const textId = `text${dotId.slice(-1)}`; // Skapar text1, text2 etc
+                                const text = document.getElementById(textId);
+
+                                const dot1 = document.getElementById('dot1');
+                                const dot2 = document.getElementById('dot2');
+                                const dot3 = document.getElementById('dot3');
+                                const dot4 = document.getElementById('dot4');
+                                const path1 = document.getElementById('path1');
+                                const path2 = document.getElementById('path2');
+                                const path3 = document.getElementById('path3');
+
                                 console.log(`Söker efter dot med id ${dotId}:`, dot);
                                 
-                                if (dot) {
-                                    // Lägg till transition för smooth färgändring
-                                    dot.style.transition = 'fill 0.3s ease';
+                                const handleHover = (event) => {
+                                    if (dotId === 'dot1') {
+                                        hasBeenHovered = true;
+                                    }
+                                    console.log(`Hover på ${dotId}`);
+                                    tooltip.innerText = tooltips[dotId];
+                                    tooltip.classList.add('visible');
+                                    tooltip.style.left = event.clientX + 'px';
+                                    tooltip.style.top = (event.clientY - 40) + 'px';
+                                    // Ändra färg på dot vid hover
+                                    dot.style.fill = 'rgb(141, 198, 163)';
+
+                                    if (dotId === 'dot2') {
+                                        path1.style.fill = 'rgb(141, 198, 163)';
+                                        dot1.style.fill = 'rgb(141, 198, 163)';
+                                    } else if (dotId === 'dot3') {
+                                        dot1.style.fill = 'rgb(141, 198, 163)';
+                                        dot2.style.fill = 'rgb(141, 198, 163)';
+                                        path1.style.fill = 'rgb(141, 198, 163)';
+                                        path2.style.fill = 'rgb(141, 198, 163)';
+                                    } else if (dotId === 'dot4') {
+                                        dot1.style.fill = 'rgb(141, 198, 163)';
+                                        dot2.style.fill = 'rgb(141, 198, 163)';
+                                        dot3.style.fill = 'rgb(141, 198, 163)';
+                                        path1.style.fill = 'rgb(141, 198, 163)';
+                                        path2.style.fill = 'rgb(141, 198, 163)';
+                                        path3.style.fill = 'rgb(141, 198, 163)';
+                                    }
+                                        
+                                    // Hitta och ändra färg på motsvarande text
+                                    const texts = document.querySelectorAll('#Layer_1 text');
+                                    texts.forEach((text, index) => {
+                                        if (index === Object.keys(tooltips).indexOf(dotId)) {
+                                            text.style.transition = 'all 0.9s ease';
+                                            text.style.fill = 'rgb(119, 187, 145)';
+                                        }
+                                    });
+                                };
+
+                                const handleMouseMove = (event) => {
+                                    tooltip.style.left = event.clientX + 'px';
+                                    tooltip.style.top = (event.clientY - 40) + 'px';
+                                };
+
+                                const handleMouseOut = () => {
+                                    console.log(`Mouseout från ${dotId}`);
+                                    tooltip.classList.remove('visible');
+                                    // Återställ original färg på dot
+                                    dot.style.fill = '#f1f2f2';
+                                    path1.style.fill = '#f1f2f2';
+                                    path2.style.fill = '#f1f2f2';
+                                    path3.style.fill = '#f1f2f2';
+                                    dot1.style.fill = '#f1f2f2';
+                                    dot2.style.fill = '#f1f2f2';
+                                    dot3.style.fill = '#f1f2f2';
+                                    dot4.style.fill = '#f1f2f2';
                                     
-                                    dot.addEventListener('mouseover', (event) => {
-                                        console.log(`Hover på ${dotId}`);
-                                        tooltip.innerText = tooltips[dotId];
-                                        tooltip.classList.add('visible');
-                                        tooltip.style.left = event.clientX + 'px';
-                                        tooltip.style.top = (event.clientY - 40) + 'px';
-                                        // Ändra färg på dot vid hover
-                                        dot.style.fill = 'rgb(141, 198, 163)';
-                                        
-                                        // Hitta och ändra färg på motsvarande text
-                                        const texts = document.querySelectorAll('#Layer_1 text');
-                                        texts.forEach((text, index) => {
-                                            if (index === Object.keys(tooltips).indexOf(dotId)) {
-                                                text.style.transition = 'fill 0.3s ease';
-                                                text.style.fill = 'rgb(141, 198, 163)';
-                                            }
-                                        });
+                                    // Återställ färgen på motsvarande text
+                                    const texts = document.querySelectorAll('#Layer_1 text');
+                                    texts.forEach((text, index) => {
+                                        if (index === Object.keys(tooltips).indexOf(dotId)) {
+                                            text.style.fill = '#f1f2f2';
+                                        }
                                     });
+                                };
 
-                                    // Lägg till mousemove event för att uppdatera tooltip position
-                                    dot.addEventListener('mousemove', (event) => {
-                                        tooltip.style.left = event.clientX + 'px';
-                                        tooltip.style.top = (event.clientY - 40) + 'px';
-                                    });
+                                if (dot) {
+                                    dot.style.transition = 'fill 0.3s ease';
+                                    dot.addEventListener('mouseover', handleHover);
+                                    dot.addEventListener('mousemove', handleMouseMove);
+                                    dot.addEventListener('mouseout', handleMouseOut);
+                                }
 
-                                    dot.addEventListener('mouseout', () => {
-                                        console.log(`Mouseout från ${dotId}`);
-                                        tooltip.classList.remove('visible');
-                                        // Återställ original färg på dot
-                                        dot.style.fill = '#f1f2f2';
-                                        
-                                        // Återställ färgen på motsvarande text
-                                        const texts = document.querySelectorAll('#Layer_1 text');
-                                        texts.forEach((text, index) => {
-                                            if (index === Object.keys(tooltips).indexOf(dotId)) {
-                                                text.style.fill = '#f1f2f2';
-                                            }
-                                        });
-                                    });
+                                if (text) {
+                                    text.style.transition = 'fill 0.3s ease';
+                                    text.addEventListener('mouseover', handleHover);
+                                    text.addEventListener('mousemove', handleMouseMove);
+                                    text.addEventListener('mouseout', handleMouseOut);
                                 }
                             });
                         }, 100);

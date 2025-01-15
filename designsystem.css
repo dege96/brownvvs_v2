@@ -1,0 +1,72 @@
+:root {    
+      
+    --font-family-primary: "Metropolis", Arial, Helvetica, sans-serif;
+    --font-family-secondary: 'Open Sans', sans-serif;
+
+    /* Font Weights */
+      --font-weight-normal: 100;
+      --font-weight-medium: 600;
+      --font-weight-semibold: 700;
+      --font-weight-bold: 800;
+      --font-weight-heavy: 900;
+      
+    /* WordPress presets */
+    --wp--preset--font-size--small: 13px;
+    --wp--preset--font-size--medium: 20px;
+    --wp--preset--font-size--large: 36px;
+    --wp--preset--font-size--x-large: 42px;
+    --wp--preset--font-size--xx-large: 50px;
+    --wp--preset--spacing--20: 0.44rem;
+    --wp--preset--spacing--30: 0.67rem;
+    --wp--preset--spacing--40: 1rem;
+    --wp--preset--spacing--50: 1.5rem;
+    --wp--preset--spacing--60: 2.25rem;
+    --wp--preset--spacing--70: 3.38rem;
+    --wp--preset--spacing--80: 5.06rem;
+    --site-header-height: 80.19px;
+    --site-max-height: calc(100vh - var(--site-header-height));
+
+    --section-title-font-size: clamp(1.8rem, 4vw, 2.5rem);
+    --section-subtext-font-size: 1.1rem;
+
+    /* Primary Colors */
+    --primary-dark-blue: rgb(18, 41, 69);
+    --primary-green: rgb(141, 198, 163);
+    --primary-red: rgb(209, 59, 56);
+
+    /* Background Colors */
+    --bg-dark-blue: rgb(18, 41, 69);
+    --bg-light-blue: rgb(232, 237, 243);
+    --bg-light-green: rgb(200, 223, 208);
+    --bg-white-transparent: rgba(255, 255, 255, 0.136);
+    
+    /* Text Colors */
+    --text-white: rgb(255, 255, 255);
+    --text-white-transparent: rgba(255, 255, 255, 0.9);
+    --text-dark: rgb(18, 41, 69);
+
+    /* UI Element Colors */
+    --header-bg: rgba(18, 41, 69, 0.95);
+    --header-bg-scrolled: rgba(18, 41, 69, 0.98);
+    --shadow-green: rgba(141, 198, 163, 0.3);
+    --shadow-dark: rgba(0, 0, 0, 0.1);
+}
+
+/* WordPress presets - Mobile */
+@media (max-width: 768px) {
+    :root {
+        --wp--preset--font-size--small: 11px;
+        --wp--preset--font-size--medium: 16px; 
+        --wp--preset--font-size--large: 24px;
+        --wp--preset--font-size--x-large: 32px;
+        --wp--preset--font-size--xx-large: 38px;
+        --wp--preset--spacing--20: 0.35rem;
+        --wp--preset--spacing--30: 0.5rem;
+        --wp--preset--spacing--40: 0.75rem;
+        --wp--preset--spacing--50: 1.25rem;
+        --wp--preset--spacing--60: 1.75rem;
+        --wp--preset--spacing--70: 2.5rem;
+        --wp--preset--spacing--80: 3.75rem;
+        --site-header-height: 70px;
+    }
+}
