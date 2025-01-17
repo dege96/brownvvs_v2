@@ -1,4 +1,5 @@
-:root {    
+
+:root {   
       
     --font-family-primary: "Metropolis", Arial, Helvetica, sans-serif;
     --font-family-secondary: 'Open Sans', sans-serif;
@@ -10,12 +11,19 @@
       --font-weight-bold: 800;
       --font-weight-heavy: 900;
       
+    /* Header presets */
+    --hero-heading-font-size: clamp(2rem, 5vw, 3.5rem);
+    --hero-heading2-font-size: clamp(1.8rem, 4vw, 2.5rem);
+    --hero-heading3-font-size: 1.8rem;
+
+    
+    
     /* WordPress presets */
-    --wp--preset--font-size--small: 13px;
-    --wp--preset--font-size--medium: 20px;
-    --wp--preset--font-size--large: 36px;
-    --wp--preset--font-size--x-large: 42px;
-    --wp--preset--font-size--xx-large: 50px;
+    --wp--preset--font-size--small: 0.8rem;
+    --wp--preset--font-size--medium: 1.3rem;
+    --wp--preset--font-size--large: 1.8rem;
+    --wp--preset--font-size--x-large: 2.2rem;
+    --wp--preset--font-size--xx-large: 2.6rem;
     --wp--preset--spacing--20: 0.44rem;
     --wp--preset--spacing--30: 0.67rem;
     --wp--preset--spacing--40: 1rem;
@@ -55,6 +63,13 @@
 /* WordPress presets - Mobile */
 @media (max-width: 768px) {
     :root {
+
+        /* Header presets */
+/*         --hero-heading-font-size: clamp(1.8rem, 4vw, 2.5rem);
+        --hero-heading2-font-size: clamp(1.6rem, 4vw, 2.2rem);
+        --hero-heading3-font-size: 1.6rem; */
+
+        /* WordPress presets */
         --wp--preset--font-size--small: 11px;
         --wp--preset--font-size--medium: 16px; 
         --wp--preset--font-size--large: 24px;
@@ -68,5 +83,31 @@
         --wp--preset--spacing--70: 2.5rem;
         --wp--preset--spacing--80: 3.75rem;
         --site-header-height: 70px;
+    }
+}
+
+/* WordPress presets - Stora skärmar */
+@media (min-width: 1616px) {
+    :root {
+        /* Header presets */
+        --hero-heading-font-size: clamp(3rem, 5vw, 4.5rem);
+        --hero-heading2-font-size: clamp(2.5rem, 4vw, 3.5rem);
+        --hero-heading3-font-size: 2.5rem;
+
+
+        /* WordPress presets */
+        --wp--preset--font-size--small: 15px;
+        --wp--preset--font-size--medium: 24px;
+        --wp--preset--font-size--large: 42px;
+        --wp--preset--font-size--x-large: 48px;
+        --wp--preset--font-size--xx-large: 58px;
+        --wp--preset--spacing--20: 0.5rem;
+        --wp--preset--spacing--30: 0.75rem;
+        --wp--preset--spacing--40: 1.2rem;
+        --wp--preset--spacing--50: 1.8rem;
+        --wp--preset--spacing--60: 2.7rem;
+        --wp--preset--spacing--70: 4rem;
+        --wp--preset--spacing--80: 6rem;
+        --site-header-height: 80.19px;
     }
 }

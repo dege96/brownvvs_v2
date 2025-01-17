@@ -1,4 +1,3 @@
-
 // Väntar på att DOM ska laddas helt innan skriptet körs
 document.addEventListener('DOMContentLoaded', function() {
     // Hanterar header scroll-effekt
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lyssnar efter scroll-event med passive flag för bättre prestanda
     window.addEventListener('scroll', () => {
-        console.log('Scrollposition:', window.scrollY, 'px');
         handleScroll();
         
         // Beräkna width och parallax för hero baserat på scroll position
@@ -116,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const circles = document.querySelectorAll('.stat-circle');
 const statsText = document.querySelector('.stats-text p');
 const statsTitle = document.querySelector('.stats-text h2');
+const statsSubtitle = document.querySelector('.stats-text h3');
 
 if (circles.length > 0) {
     // Aktiverar första cirkeln som standard
@@ -123,6 +122,8 @@ if (circles.length > 0) {
     if (statsText && statsTitle) {
         statsText.innerHTML = circles[0].dataset.text;
         statsTitle.textContent = circles[0].dataset.title;
+/*         statsSubtitle.textContent = circles[0].dataset.subtitle; */
+        
     }
 
     circles.forEach((circle, index) => {
@@ -134,6 +135,9 @@ if (circles.length > 0) {
                 if (statsText && statsTitle) {
                     statsText.innerHTML = circle.dataset.text;
                     statsTitle.textContent = circle.dataset.title;
+                    if (statsSubtitle) {
+                        statsSubtitle.textContent = circle.dataset.subtitle;
+                    }
                     
                     // Lägg till tooltip-funktionalitet efter att SVG:n har renderats
                     if (circle.id === 'circle-2') {
@@ -308,3 +312,41 @@ if (circles.length > 0) {
 
 
 });
+
+// Hantera klick på service cards
+const serviceCards = document.querySelectorAll('.service-card');
+const servicesGrid = document.querySelector('.services-grid');
+
+serviceCards.forEach(card => {
+    card.addEventListener('click', function() {
+        const isExpanded = this.classList.contains('expanded');
+        
+        if (!isExpanded) {
+            // Spara ursprunglig position för animering tillbaka
+            const rect = this.getBoundingClientRect();
+            this.style.setProperty('--original-top', rect.top + 'px');
+            this.style.setProperty('--original-left', rect.left + 'px');
+            
+            // Expandera valt kort
+            this.classList.add('expanded');
+            servicesGrid.classList.add('card-expanded');
+            
+            // Fada ut andra kort
+            serviceCards.forEach(otherCard => {
+                if (otherCard !== this) {
+                    otherCard.classList.add('faded');
+                }
+            });
+        } else {
+            // Återställ till ursprungligt läge
+            this.classList.remove('expanded');
+            servicesGrid.classList.remove('card-expanded');
+            
+            // Ta bort fade från andra kort
+            serviceCards.forEach(otherCard => {
+                otherCard.classList.remove('faded');
+            });
+        }
+    });
+});
+

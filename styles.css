@@ -1,6 +1,8 @@
 @import url('https://fonts.cdnfonts.com/css/metropolis-2');
 @import url('designsystem.css');
 
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -90,6 +92,21 @@ li {
     font-weight: var(--font-weight-normal);
 }
 
+h1 {
+    font-size: var(--hero-heading-font-size);
+}   
+
+h2 {
+    font-size: var(--hero-heading2-font-size);
+}  
+
+h3 {
+    font-size: var(--hero-heading3-font-size);
+}
+
+p {
+    font-size: var(--wp--preset--font-size--medium);
+}
 
 .cta-button {
     background-color: var(--primary-red);
@@ -102,8 +119,8 @@ li {
     font-weight: var(--font-weight-medium);
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(209, 59, 56, 0.2);
-}
+/*     box-shadow: 0 4px 15px rgba(209, 59, 56, 0.2);
+ */}
 
 .cta-button:hover {
     opacity: 0.8;
@@ -146,7 +163,7 @@ li {
     z-index: 2;
     max-width: 70%;
         opacity: 0;
-    margin-top: 25px;
+    margin-top: 5vh;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards 0.5s;
     padding: 8vh 15vh 15vh 15vh;
@@ -160,7 +177,7 @@ li {
 }
 
 .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: var(--hero-heading-font-size);
     margin-bottom: var(--wp--preset--spacing--50);
     line-height: 1.2;
     font-weight: var(--font-weight-bold);
@@ -221,15 +238,14 @@ li {
     font-weight: 600;
     border-radius: 6px;
     display: inline-block;
-    font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(209, 59, 56, 0.2);
+/*     box-shadow: 0 4px 15px rgba(209, 59, 56, 0.2); */
 }
 
 .cta-container a:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(209, 59, 56, 0.3);
-}
+/*     box-shadow: 0 6px 20px rgba(209, 59, 56, 0.3);
+ */}
 
 .hamburger {
     display: none;
@@ -267,30 +283,38 @@ li {
 .stats-section {
     background-color: rgba(255, 255, 255, 0.05);
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     gap: 60px;
     padding: 100px 80px;
     margin: 0 auto;
+
 }
 
 .stats-text {
     flex: 1;
     text-align: left;
     max-width: 500px;
-    padding-top: 40px;
 }
 
 .stats-text h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size:  clamp(1.8rem, 4vw, 3.5rem);
     font-weight: var(--font-weight-bold);
-    margin-bottom: 30px;
+    margin-bottom: 1vh;
+    line-height: 1.2;
+    transition: opacity 0.3s ease;
+}
+
+.stats-text h3 {
+    font-size:  clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 3vh;
     line-height: 1.2;
     transition: opacity 0.3s ease;
 }
 
 .stats-text p {
-    font-size: 1.1rem;
+    font-size: var(--wp--preset--font-size--medium);
     opacity: 0.9;
     transition: opacity 0.3s ease;
 }
@@ -387,8 +411,8 @@ li {
 .stat-circle.active {
     background-color: var(--primary-green);
     transform: scale(1.05);
-    box-shadow: 0 0 30px var(--shadow-green);
-}
+/*     box-shadow: 0 0 30px var(--shadow-green);
+ */}
 
 .stat-circle:hover {
     transform: scale(1.05);
@@ -410,7 +434,7 @@ li {
 
 .services-section {
     padding: 80px;
-    height: var(--site-max-height);
+    height: 100%;
     background-color: rgb(13, 31, 52);
 }
 
@@ -428,8 +452,8 @@ li {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -439,7 +463,36 @@ li {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.9s ease;
+    cursor: pointer;
+}
+
+.service-card p {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    margin-top: 0;
+}
+
+.service-card:hover p {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 15px;
+}
+
+@media (max-width: 1030px) {
+    .service-card:hover p {
+        opacity: 0;
+        max-height: 0;
+        margin-top: 0;
+    }
+    
+    .service-card.expanded p {
+        opacity: 1;
+        max-height: 200px;
+        margin-top: 15px;
+    }
 }
 
 .service-card:hover {
@@ -448,13 +501,14 @@ li {
 }
 
 .service-card h3 {
-    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-size: var(--hero-heading3-font-size);
     margin-bottom: 15px;
     color: var(--primary-red);
 }
 
+
 .testimonials-section {
-    height: var(--site-max-height);
+    height: 100%;
     padding: 80px;
     background-color: var(--bg-dark-blue);
 }
@@ -464,6 +518,7 @@ li {
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    height: 100%;
 }
 
 .testimonial-card {
@@ -472,16 +527,49 @@ li {
     padding: 30px;
     border-radius: 8px;
     position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .testimonial-card::before {
     content: '"';
     font-size: 4rem;
     position: absolute;
-    top: -20px;
+    top: -10px;
     left: 20px;
-    color: var(--primary-red);
+    color: rgb(214 168 167);
     opacity: 0.3;
+}
+
+.testimonial-text {
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: 1.6;
+    position: relative;
+
+}
+
+.testimonial-author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.testimonial-author-text {
+    display: flex;
+    flex-direction: column;
 }
 
 .contact-section {
@@ -509,7 +597,7 @@ li {
 }
 
 .contact-info h3 {
-    font-size: 1.8rem;
+    font-size: var(--hero-heading3-font-size);
     margin-bottom: 15px;
     color: var(--color-accent);
 }
@@ -668,14 +756,14 @@ li {
 
 .footer-info h3 {
     color: rgb(209, 59, 56);
-    font-size: 1.8rem;
+    font-size: var(--hero-heading3-font-size);
     margin-bottom: 30px;
 }
 
 .footer-group strong {
     display: block;
     color: rgb(141, 198, 163);
-    font-size: 1.1rem;
+    font-size: var(--wp--preset--font-size--medium);
     margin-bottom: 8px;
     font-weight: var(--font-weight-medium);
 }
