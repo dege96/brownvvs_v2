@@ -60,6 +60,59 @@
     --shadow-dark: rgba(0, 0, 0, 0.1);
 }
 
+/* WordPress presets - Stora skärmar */
+@media (min-width: 1616px) {
+    :root {
+        /* Header presets */
+        --hero-heading-font-size: clamp(3rem, 5vw, 4.5rem);
+        --hero-heading2-font-size: clamp(2.5rem, 4vw, 3.5rem);
+        --hero-heading3-font-size: 2.5rem;
+
+
+        /* WordPress presets */
+        --wp--preset--font-size--small: 15px;
+        --wp--preset--font-size--medium: 24px;
+        --wp--preset--font-size--large: 42px;
+        --wp--preset--font-size--x-large: 48px;
+        --wp--preset--font-size--xx-large: 58px;
+        --wp--preset--spacing--20: 0.5rem;
+        --wp--preset--spacing--30: 0.75rem;
+        --wp--preset--spacing--40: 1.2rem;
+        --wp--preset--spacing--50: 1.8rem;
+        --wp--preset--spacing--60: 2.7rem;
+        --wp--preset--spacing--70: 4rem;
+        --wp--preset--spacing--80: 6rem;
+        --site-header-height: 80.19px;
+    }
+}
+
+/* WordPress presets - Stora skärmar */
+@media (min-width: 1020px) {
+    :root {
+        /* Header presets */
+        --hero-heading-font-size: clamp(2.5rem, 5vw, 4.5rem);
+        --hero-heading2-font-size: clamp(2.2rem, 4vw, 3.5rem);
+        --hero-heading3-font-size: 2rem;
+
+
+        /* WordPress presets */
+        --wp--preset--font-size--small: 15px;
+        --wp--preset--font-size--medium: 24px;
+        --wp--preset--font-size--large: 42px;
+        --wp--preset--font-size--x-large: 48px;
+        --wp--preset--font-size--xx-large: 58px;
+        --wp--preset--spacing--20: 0.5rem;
+        --wp--preset--spacing--30: 0.75rem;
+        --wp--preset--spacing--40: 1.2rem;
+        --wp--preset--spacing--50: 1.8rem;
+        --wp--preset--spacing--60: 2.7rem;
+        --wp--preset--spacing--70: 4rem;
+        --wp--preset--spacing--80: 6rem;
+        --site-header-height: 80.19px;
+    }
+}
+
+
 /* WordPress presets - Mobile */
 @media (max-width: 768px) {
     :root {
@@ -86,28 +139,18 @@
     }
 }
 
-/* WordPress presets - Stora skärmar */
-@media (min-width: 1616px) {
+@media (max-width: 320px) {
     :root {
         /* Header presets */
-        --hero-heading-font-size: clamp(3rem, 5vw, 4.5rem);
-        --hero-heading2-font-size: clamp(2.5rem, 4vw, 3.5rem);
-        --hero-heading3-font-size: 2.5rem;
+        --hero-heading-font-size: clamp(1.8rem, 3vw, 2.5rem);
+        --hero-heading2-font-size: clamp(1.4rem, 2vw, 2rem);
+        --hero-heading3-font-size: 1.4rem;
 
-
-        /* WordPress presets */
-        --wp--preset--font-size--small: 15px;
-        --wp--preset--font-size--medium: 24px;
-        --wp--preset--font-size--large: 42px;
-        --wp--preset--font-size--x-large: 48px;
-        --wp--preset--font-size--xx-large: 58px;
-        --wp--preset--spacing--20: 0.5rem;
-        --wp--preset--spacing--30: 0.75rem;
-        --wp--preset--spacing--40: 1.2rem;
-        --wp--preset--spacing--50: 1.8rem;
-        --wp--preset--spacing--60: 2.7rem;
-        --wp--preset--spacing--70: 4rem;
-        --wp--preset--spacing--80: 6rem;
-        --site-header-height: 80.19px;
+        --wp--preset--font-size--small: 10px;
+        --wp--preset--font-size--medium: 14px; 
+        --wp--preset--font-size--large: 20px;
+        --wp--preset--font-size--x-large: 28px;
+        --wp--preset--font-size--xx-large: 34px;
     }
+
 }

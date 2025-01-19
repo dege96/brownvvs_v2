@@ -142,8 +142,6 @@ if (circles.length > 0) {
                     // Lägg till tooltip-funktionalitet efter att SVG:n har renderats
                     if (circle.id === 'circle-2') {
                         const tooltip = document.getElementById('tooltip');
-                        console.log('Tooltip element:', tooltip);
-                        console.log('Tooltip style:', window.getComputedStyle(tooltip));
                         
                         const tooltips = {
                             'dot1': '1991 började jag min karriär som injusterare av rörsystem på Värmex Konsult AB',
@@ -187,17 +185,13 @@ if (circles.length > 0) {
                                 const path2 = document.getElementById('path2');
                                 const path3 = document.getElementById('path3');
 
-                                console.log(`Söker efter dot med id ${dotId}:`, dot);
                                 
                                 const handleHover = (event) => {
                                     if (dotId === 'dot1') {
                                         hasBeenHovered = true;
                                     }
                                     console.log(`Hover på ${dotId}`);
-                                    tooltip.innerText = tooltips[dotId];
-                                    tooltip.classList.add('visible');
-                                    tooltip.style.left = event.clientX + 'px';
-                                    tooltip.style.top = (event.clientY - 40) + 'px';
+                                    showTooltip(tooltips[dotId], event.target, 99999); // Längre duration för hover
                                     // Ändra färg på dot vid hover
                                     dot.style.fill = 'rgb(141, 198, 163)';
 
@@ -235,7 +229,7 @@ if (circles.length > 0) {
 
                                 const handleMouseOut = () => {
                                     console.log(`Mouseout från ${dotId}`);
-                                    tooltip.classList.remove('visible');
+                                    document.getElementById('tooltip').classList.remove('visible');
                                     // Återställ original färg på dot
                                     dot.style.fill = '#f1f2f2';
                                     path1.style.fill = '#f1f2f2';
@@ -345,6 +339,38 @@ serviceCards.forEach(card => {
             // Ta bort fade från andra kort
             serviceCards.forEach(otherCard => {
                 otherCard.classList.remove('faded');
+            });
+        }
+    });
+});
+
+// Gemensam tooltip-funktion
+function showTooltip(text, element, duration = 2000) {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.textContent = text;
+    tooltip.classList.add('visible');
+    
+    // Placera tooltip nära elementet
+    const rect = element.getBoundingClientRect();
+    tooltip.style.left = `${rect.left}px`;
+    tooltip.style.top = `${rect.bottom + 5}px`;
+    
+    // Ta bort tooltip efter angiven tid
+    setTimeout(() => {
+        tooltip.classList.remove('visible');
+    }, 5000);
+}
+
+// Hantera telefonlänkar
+document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (!isMobile) {
+            e.preventDefault();
+            const phoneNumber = this.textContent;
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                showTooltip('Numret kopierat!', this);
             });
         }
     });

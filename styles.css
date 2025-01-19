@@ -130,12 +130,11 @@ p {
     background: linear-gradient(rgb(18 41 69 / 81%), rgb(18 41 69 / 71%)),
                 url('images/BrownExpanded.jpg');
     background-size: cover;
-    background-position: center;
     background-attachment: fixed;
     color: var(--text-white);
     text-align: left;
     position: relative;
-    height: calc(100vh - var(--site-header-height));
+    /* height: calc(100vh - var(--site-header-height)); */
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -283,7 +282,7 @@ p {
 .stats-section {
     background-color: rgba(255, 255, 255, 0.05);
     display: flex;
-    align-items: center;
+
     justify-content: space-around;
     gap: 60px;
     padding: 100px 80px;
@@ -369,8 +368,8 @@ p {
 .stat-circle {
     --base-size: clamp(220px, 25vw, 320px);
     --medium-size: calc(var(--base-size) * 0.85);
-    --circle-spacing: calc(var(--base-size) * -0.2);  /* Relativt avstånd mellan cirklarna */
-    position: absolute;
+    --circle-spacing: calc(var(--base-size)* -0.15);
+        position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -419,7 +418,7 @@ p {
 }
 
 .stat-number {
-    font-size: 2.8rem;
+    font-size: var(--hero-heading3-font-size);
     font-weight: var(--font-weight-bold);
     color: var(--text-dark);
     margin-bottom: 5px;
@@ -443,6 +442,25 @@ p {
     font-weight: var(--font-weight-bold);
     margin-bottom: 40px;
     text-align: center;
+    display: flex;
+    align-items: center;
+        flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    background-color: rgb(18, 41, 69);
+    height: 2px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 1000px;
+}
+
+.section-title-lightblue::after {
+    background-color: rgba(57, 87, 123, 0.485) !important;
 }
 
 .left-aligned-section-title {
@@ -481,7 +499,12 @@ p {
     margin-top: 15px;
 }
 
-@media (max-width: 1030px) {
+ .logo-image {
+    filter: brightness(0) invert(1);
+ }
+
+
+@media (max-width: 1020px) {
     .service-card:hover p {
         opacity: 0;
         max-height: 0;
@@ -502,7 +525,6 @@ p {
 
 .service-card h3 {
     font-size: var(--hero-heading3-font-size);
-    margin-bottom: 15px;
     color: var(--primary-red);
 }
 
@@ -514,15 +536,15 @@ p {
 }
 
 .testimonials-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    height: 100%;
 }
 
 .testimonial-card {
-    flex: 1;
+    /* flex: 1; */
     background-color: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 8px;
@@ -556,6 +578,7 @@ p {
     font-size: var(--wp--preset--font-size--medium);
     line-height: 1.6;
     position: relative;
+    margin-top: auto;
 
 }
 
@@ -613,6 +636,7 @@ p {
     gap: 25px;
     flex-grow: 1;
     justify-content: center;
+    margin-top: 2vh;
 }
 
 .contact-item {
@@ -654,12 +678,26 @@ p {
 
 }
 
+
+.linkText a {
+    text-decoration: none;
+    color: var(--text-white);
+    cursor: pointer;
+}
+
+.linkText a:hover {
+    text-decoration: underline;
+}
+
+
 .stat-circle.bottom {
+    scale: 1.2;
     mix-blend-mode: luminosity;
     cursor: default;
     overflow: hidden;
     background-color: var(--bg-dark-blue);  /* Samma bakgrundsfärg som de andra cirklarna */
     pointer-events: none;
+    margin-top: 3.5vh;
 }
 
 .stat-circle.bottom .content {
@@ -682,7 +720,6 @@ p {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    filter: grayscale(100%);  /* Lägg till gråskala för bättre blandningseffekt */
 }
 
 /* Ta bort hover effekt för bottom circle */
@@ -779,6 +816,8 @@ p {
     background-color: rgb(18, 41, 69);
     color: white;
     padding: 10px;
+    max-width: 20vw;
+    margin-left: 1vw;
     border-radius: 4px;
     font-size: 14px;
     z-index: 999999;
@@ -831,7 +870,7 @@ p {
     }
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
     .stats-section {
         background-color: var(--bg-light-blue);
         padding: 0;
@@ -865,7 +904,7 @@ p {
     }
 }
 
-@media (min-width: 1031px) {
+@media (min-width: 1021px) {
     .mobile-stats {
         display: none; /* Dölj mobilversionen på desktop */
     }
@@ -874,7 +913,7 @@ p {
     }
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
     .stats-circles {
         display: none;  /* Dölj cirklarna på mobil/tablet */
     }
@@ -887,7 +926,7 @@ p {
     }
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
     header {
         padding: 15px 20px;
     }
@@ -934,9 +973,7 @@ p {
         min-height: fit-content;
     }
 
-    .hero h1 {
-        font-size: clamp(2rem, 5vw, 2rem);
-    }
+
 
     .hero-content {
         max-width: 90%;
@@ -979,7 +1016,7 @@ p {
 }
 
 
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
     .contact-container {
         gap: 30px;
         padding: 0 20px;
@@ -995,7 +1032,12 @@ p {
 
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
+    .section-header h2 {
+        color: rgb(18, 41, 69);  /* Mörkblå text */
+    }
+
+
 
     .stats-section {
         background-color: var(--bg-light-blue);
@@ -1108,7 +1150,7 @@ p {
         }
     }
 
-    @media (min-width: 769px) and (max-width: 1030px) {
+    @media (min-width: 769px) and (max-width: 1020px) {
         .mobile-content {
             padding: calc(30px + 2.5vw) calc(35px + 2.5vw);
         }
@@ -1161,7 +1203,6 @@ p {
         filter: brightness(0) invert(1);
         display: block;
         margin: 0 auto;
-
         width: 150px;
         height: auto;
     }
@@ -1190,23 +1231,11 @@ p {
     }
 }
 
-@media (max-width: 1289px) {
-    .hero h1{
-        font-size:  2.5rem;
-    }
-}
-
-@media (max-width: 1030px) {
+@media (max-width: 1020px) {
 
 
     .section-header {
         display: block;  /* Visa på mobil */
-    }
-
-    .section-header h2 {
-        color: rgb(18, 41, 69);
-        font-size: 2.2rem;
-        margin-bottom: 10px;
     }
 
     .stats-section {
@@ -1226,6 +1255,7 @@ p {
     .stats-text > p {
         display: none;  /* Dölj desktop text */
     }
+
     .stats-section {
         background-color: rgb(232, 237, 243);
         padding: 0 0 40px 0;
@@ -1241,14 +1271,14 @@ p {
 
 }
 
-@media (min-width: 1031px) {
+@media (min-width: 1021px) {
     .section-header {
         display: none;  /* Dölj på desktop */
     }
 }
 
 /* Desktop styles (över 1030px) */
-@media (min-width: 1031px) {
+@media (min-width: 1021px) {
     .mobile-stats {
         display: none;  /* Dölj mobilversionen */
     }
@@ -1274,6 +1304,7 @@ p {
     .contact-info,
     .map-container {
         height: 350px;
+        width: 100%;
     }
 
     .map-container {
@@ -1285,21 +1316,6 @@ p {
         padding: 0 0 40px 0;
     }
 
-    .section-header h2 {
-        color: rgb(18, 41, 69);  /* Mörkblå text */
-    }
-
-    .section-header h2::after {
-        background-color: rgb(18, 41, 69);
-        content: '';
-        display: block;
-        width: 100%;
-        margin: 15px auto 0;
-        position: relative;
-        height: 2px;
-        margin-top: 15px;
-    }
-
     .footer-info {
         flex-direction: column;  /* Stapla på mobil */
         gap: 30px;
@@ -1309,4 +1325,14 @@ p {
         margin-bottom: 0;
         text-align: center;
     }
+
+    .testimonials-container {
+        grid-template-columns: none;
+    }
+}
+
+@media (max-width: 320px) {
+
+
+
 }
